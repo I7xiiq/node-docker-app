@@ -5,3 +5,4 @@ services:
       - ./src:/app/src:ro
     environment:
       - NODE_ENV=development
+    command: npm run start-dev
