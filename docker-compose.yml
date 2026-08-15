@@ -6,6 +6,8 @@ services:
       - "4000:4000"
     env_file:
       - ./.env
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo
@@ -26,6 +28,11 @@ services:
       ME_CONFIG_BASICAUTH_ENABLED: true
       ME_CONFIG_BASICAUTH_USERNAME: root
       ME_CONFIG_BASICAUTH_PASSWORD: example
+    depends_on:
+      - mongo
+  
+  redis: 
+    image: redis
 
 volumes:
   mongo-db:
