@@ -23,6 +23,14 @@ const DB_HOST = 'mongo'; // أو أي اسم الخدمة كما هو في docke
 const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`;
 mongoose.connect(URI).then(() => console.log('connect to db...')).catch((err) => console.log('failed to connect to db: ', err));
 
-app.get('/' , (req, res) => res.send('<h1> ed11 aييييhmeggggd</h1>'));
+app.get('/' , (req, res) => {
+redisclient.set('product' , 'product...');
+res.send('<h1>AHMED MAGD</h1>');
+});
+
+app.get('/data' , async (req, res) =>  {
+const product = await redisclient.get('product')
+redisclient.set('product' , 'product...');
+res.send(`<h1>AHMED MAGD</h1> <h2>${product}</h2>`);});
 
 app.listen(PORT, () => console.log(`app is up and running on port: ${PORT}`));
