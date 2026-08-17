@@ -7,8 +7,18 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - mongo
+      - postgres
       - redis
+
+  postgres:
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: example
+  
 
   # mongo:
   #   image: mongo
@@ -50,3 +60,4 @@ services:
 
 volumes:
   mongo-db:
+  postgres-db:
